@@ -3,12 +3,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Attenzione sito polizia aaaaaaaaaaaaaa</title>
+    <title>LSPD - Database</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container ml-auto mr-auto text-center">
+      
+      <img src="https://danielepanarese.it/img/fivem/LSPD.png" height="10%">
+      <h1 class="display-4">Database della Polizia</h1>
+      <h4 class="display-3">della cittá di Los Santos</h4>
+      <br>
+      
         <table class="table table-dark" >
             <thead>
             <tr>
@@ -22,44 +28,45 @@
             </tr>
             </thead>
             <tbody id="mytable">
-            
+
             </tbody>
         </table>
-    </div>  
-      
-      <button class="btn btn-dark" onclick="openAdd()">
-          Aggiungi
-      </button>
+    </div>
+    <div class="text-center">
+	  <button class="btn btn-success " onclick="openAdd()">
+		  Aggiungi Reato
+	  </button>
+    </div>
     <div id="id01" class="modal">
-        
+
         <form class="modal-content animate" id="login-form" onsubmit="return false">
-          
-      
+
+
           <div class="container">
             <label for="uname"><b>Username</b></label>
             <input type="text" id="username" placeholder="Inserisci Username" name="uname" required>
-      
+
             <label for="psw"><b>Password</b></label>
             <input type="password" id="password" placeholder="Inserisci Password" name="psw" required>
-              
-            <button class="btn btn-primary" type="submit">Login</button>
-            
+
+            <button class="btn btn-primary" type="submit">Accedi al Database</button>
+
           </div>
-      
+
         </form>
     </div>
 
     <div id="id02" class="modal">
-        
+
         <form class="modal-content animate" id="add-form" onsubmit="return false">
-            
+
           <div class="container">
             <label for="uname"><b>Nome</b></label>
             <input type="text" id="name" placeholder="Nome" name="uname" required>
-      
+
             <label for="psw"><b>Cognome</b></label>
             <input type="text" id="surname" placeholder="Inserisci Cognome" name="psw" required>
-              
+
             <label for="psw"><b>Data di nascita</b></label>
             <input type="text" id="birth" placeholder="Inserisci Data" name="psw" required>
 
@@ -75,7 +82,7 @@
             <button class="btn btn-secondary" style="float: right"  onclick="document.getElementById('id02').style.display ='none'" >Annulla</p>
 
           </div>
-      
+
         </form>
     </div>
 
