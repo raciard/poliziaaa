@@ -8,14 +8,16 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <button class="btn btn-secondary " onclick="localStorage.clear(); location.reload()" style="float: right">LOGOUT</button>
+
     <div class="container ml-auto mr-auto text-center">
-      
+	      
       <img src="https://danielepanarese.it/img/fivem/LSPD.png" height="10%">
-      <h1 class="display-4">Database della Polizia</h1>
-      <h4 class="display-3">della cittá di Los Santos</h4>
-      <br>
+      <h1>Database della Polizia</h1>
+      <h4>della cittá di Los Santos</h4>
       
-        <table class="table table-dark" >
+      
+        <table class="table table-dark mt-4" >
             <thead>
             <tr>
                 <th scope="col">Nome</th>
@@ -79,7 +81,7 @@
             <label for="psw"><b>Sanzione</b></label>
             <input type="text" id="sanction" placeholder="Inserisci Sanzione" name="psw" required>
             <button class="btn btn-primary" type="submit">Aggiungi</button>
-            <button class="btn btn-secondary" style="float: right"  onclick="document.getElementById('id02').style.display ='none'" >Annulla</p>
+            <button class="btn btn-secondary" style="float: right"  onclick="document.getElementById('id02').style.display ='none'" >Annulla</div>
 
           </div>
 

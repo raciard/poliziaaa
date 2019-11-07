@@ -16,6 +16,6 @@ app.use('/add', require('./routes/add'))
 mongoose.connect('mongodb+srv://admin:hH5EzfIihF56qci6@pasquale-0h0i3.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true});
 
 
-app.listen('1999', () => {
+app.listen('80', () => {
     console.log('menchia sto listenando')
 })
