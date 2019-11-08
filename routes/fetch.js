@@ -8,11 +8,12 @@ const mongoose = require('mongoose')
 
 const criminali = require('../models/criminali')
 
+
+router.use(require('../middleware/auth'))
+
+
 router.post("/", (req, res) => {
-    console.log(req.body.jwt)
-    let user = jwt.verify(req.body.jwt, config.secret)
-    console.log(user)
-    if(user.user == config.username){
+   
         //asddasd
         
         criminali.find((err, crim) => {
@@ -22,12 +23,9 @@ router.post("/", (req, res) => {
             }
             else{
                 res.send({ok: true, criminals: crim})
+                
             }   
         })
-
-
-    }
-    else res.status('403').send('errore di autenticazione')
 })
 
 module.exports = router;

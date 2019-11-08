@@ -33,7 +33,8 @@ function refresh(){
                                      "</td><td>" + criminal.birth + "</td>" +
                                      "</td><td>" + criminal.date + "</td>" +
                                      "</td><td>" + criminal.crimes + "</td>" +
-                                     "</td><td>" + criminal.sanction + "</td></tr>");
+                                     "</td><td>" + criminal.sanction + "</td>" +
+                                     '<td class="p-0"> <button class="btn btn-danger"  style="width: 100% "onclick="deleteCrim(\'' + criminal._id + '\')"> Cancella </button> </td></tr>' );
                 });
 
                 
@@ -139,3 +140,30 @@ function add(e){
 }
 
 
+function deleteCrim(id){
+    let body = {
+        jwt: localStorage.getItem('jwt')
+
+    }
+    fetch('/delete/' + id, {
+        method: 'post',
+        headers: {
+        "Content-type": "application/json"
+        },
+        body: JSON.stringify(body)
+    })
+    .then((response) => {
+        response.json()
+        .then((res) => {
+            if(res.done == true){
+                console.log('ok')
+                refresh()
+            }
+            else {
+                console.log('not ok')
+            }
+            refresh()
+        })
+    })
+        
+}
