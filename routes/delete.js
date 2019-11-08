@@ -6,7 +6,7 @@ var router = express.Router()
 const jwt = require('jsonwebtoken')
 
 router.use(require('../middleware/auth'))
-
+router.use(require('../middleware/isAdmin'))
 
 router.post('/:id', async (req, res) => {
     

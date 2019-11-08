@@ -9,7 +9,8 @@ const mongoose = require('mongoose')
 const User = require('../models/user')
 
 
-
+router.use(require('../middleware/auth'))
+router.use(require('../middleware/isAdmin'))
 
 
 router.post("/", (req, res) => {
