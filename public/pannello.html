@@ -1,0 +1,147 @@
+<html lang="it-IT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>LSPD - Database</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button class="btn btn-secondary " onclick="localStorage.clear(); location.reload()" style="float: right">LOGOUT</button>
+
+    <div class="container ml-auto mr-auto text-center">
+        <table class="table table-dark mt-4" >
+            <thead>
+            <tr>
+                <th scope="col">Username</th>
+                <th scope="col">Cancella</th>
+                
+
+            </tr>
+            </thead>
+            <tbody id="mytable">
+
+            </tbody>
+        </table>
+        
+
+
+
+
+
+    <div id="id01"  style="display: block!important;">
+
+        <form class="modal-content animate" id="login-form" onsubmit="return false">
+
+
+          <div class="container">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" id="username" placeholder="Inserisci Username" name="uname" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" id="password" placeholder="Inserisci Password" name="psw" required>
+
+            <button class="btn btn-primary" type="submit">Aggiungi</button>
+
+          </div>
+
+        </form>
+    </div>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        refresh()
+        document.getElementById('id01').addEventListener('submit', (e) => {
+            e.preventDefault()
+
+            let userField = document.getElementById('username')
+            let pswField = document.getElementById('password')
+            
+            let body = {
+                jwt: localStorage.getItem('jwt'),
+                newUser: {
+                    username: userField.value,
+                    password: pswField.value
+                }
+            }
+
+            fetch('/addUser', {
+                method: 'post',
+                headers: {
+                "Content-type": "application/json"
+                },
+                body: JSON.stringify(body)
+            }).then(() => {
+                refresh()
+
+            })
+
+        })
+
+
+        function refresh(){
+    
+            let body = {jwt: localStorage.getItem('jwt')}
+
+            fetch('/fetchUser', {
+                method: 'post',
+                headers: {
+                "Content-type": "application/json"
+                },
+                body: JSON.stringify(body)
+                })
+                .then((response) => {
+                    response.json()
+                    .then((res) => {
+                        if(res.ok == true){
+                            users = res.users
+
+                            document.getElementById('mytable').innerHTML = " "
+                            users.forEach((user) => {
+                                $("#mytable").append("<tr><td>" + user.userName + 
+                                                '<td class="p-0"> <button class="btn btn-danger"  style="width: 100% "onclick="deleteUser(\'' + user._id + '\')"> Cancella </button> </td></tr>' );
+                            });
+
+                            
+                }
+            })
+
+            }).catch((err) => {
+                console.error(err)  
+            })}
+
+
+
+            function deleteUser(id){
+                let body = {
+                    jwt: localStorage.getItem('jwt')
+                }
+                fetch('/deleteUser/' + id, {
+                    method: 'post',
+                    headers: {
+                    "Content-type": "application/json"
+                    },
+                    body: JSON.stringify(body)
+                })
+                .then((response) => {
+                    response.json()
+                    .then((res) => {
+                        if(res.done == true){
+                            console.log('ok')
+                            refresh()
+                        }
+                        else {
+                            console.log('not ok')
+                        }
+                        refresh()
+                    })
+                })
+                
+            }
+
+    
+    </script>
+</body>
+</html>
